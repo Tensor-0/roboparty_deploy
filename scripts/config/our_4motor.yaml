@@ -1,0 +1,25 @@
+# RDK X5 + DM-J4340-2EC × 4 集成测试配置（2026-09-04）
+# 拓扑：can1 = ID1 一台；can2 = ID1/2/3 三台（反馈帧 ID 全为 Master_ID=0，
+# 驱动按反馈帧 D0 低4位分发，master_id_offset 不再参与 CAN 分发）
+motors:
+    motor_id: [1, 1, 2, 3]
+    motor_interface_type: ["can", "can"]
+    motor_interface: ["can1", "can2"]
+    motor_num: [1, 3]
+    motor_type: ["DM", "DM"]
+    motor_model: [2, 2, 2, 2]          # 2 = DM4340P_24V（SpdMax 6 / TauMax 12）
+    master_id_offset: 0
+    motor_zero_offset: [0.0, 0.0, 0.0, 0.0]
+
+robot:
+    kp: [50.0, 50.0, 50.0, 50.0]      # 与多电机测试脚本一致的验证参数
+    kd: [2.0, 2.0, 2.0, 2.0]
+    motor_sign: [1, 1, 1, 1]
+    urdf2motor: [0, 1, 2, 3]
+
+imu:
+    imu_id: 1
+    imu_type: "DM_IMU_L1"
+    imu_interface_type: "serial"
+    imu_interface: "/dev/ttyACM0"
+    baudrate: 921600
