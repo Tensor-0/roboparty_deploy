@@ -54,3 +54,7 @@ temp
 cmake-build-debug
 .idea
 log
+
+# Python
+__pycache__/
+*.pyc
