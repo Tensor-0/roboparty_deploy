@@ -121,6 +121,12 @@ def calibrate_motor(motor_info: dict) -> str:
                 after = motor.get_motor_pos()
                 if ok:
                     # 二次确认：驱动说成功，再看一眼读回来的位置
+                    # ⚠️ 0.05 这个数在【三处】各写了一遍，改一处要记得改另外两处：
+                    #      robot-deploy-toolkit/scripts/probe_set_zero.py
+                    #      robot-deploy-toolkit/scripts/probe_set_zero_all.py
+                    # ⚠️ 而驱动自己的判据是 0.01（motor_driver.hpp 的
+                    #    judgment_accuracy_threshold）⇒ 这里比驱动松 5 倍，
+                    #    只用来抓"驱动放行之后、隔 0.3s 又漂走"，不是更严的闸。
                     if abs(after) < 0.05:
                         print(f"\n  ✅ 标零成功（标后读数 {after:+.6f} rad）")
                         result = "ok"
