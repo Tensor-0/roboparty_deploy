@@ -1,6 +1,9 @@
 [submodule "inference"]
 	path = src/inference
-	url = https://github.com/Roboparty/roboparty_inference.git
+	# ⚠️ 指向【自己的 fork】，不是上游。dm10 分支的提交只存在于 fork 里，
+	#    指上游要靠 GitHub 的 fork 网络共享对象才取得到（隐式，断 fork 关系就没了）。
+	#    其余四个 submodule 不指 fork —— 它们记录的指针本来就是上游的提交。
+	url = https://github.com/Tensor-0/roboparty_inference.git
 [submodule "motors"]
 	path = src/motors
 	url = https://github.com/Roboparty/roboparty_motors.git
